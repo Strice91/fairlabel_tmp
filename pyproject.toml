@@ -1,0 +1,42 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "fairlabel"
+version = "0.0.1"
+description = "Fair Labeling using Active Learning"
+readme = "README.md"
+authors = ["Stefan Röhrl <s.roehrl@reply.de>"]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+dynaconf = "^3.2"
+nicegui = "^3.1"
+kagglehub = "^0.3.13"
+pandas = "^2.3"
+scikit-learn = "^1.7"
+
+[tool.black]
+line-length = 120
+target-version = ['py312', 'py313']
+
+[tool.ruff]
+line-length = 120
+select = [
+    "E",   # pycodestyle errors
+    "F",   # pyflakes
+    "I",   # isort
+    "ICN", # import conventions
+    "PL",  # pylint
+    "RUF", # ruff
+    "UP",  # pyupgrade
+    "W",   # pycodestyle warnings
+]
+ignore = [
+    "PLC1901", # expression can be simplified as an empty string is falsey
+    "PLR0913", # too many arguments to function call
+    "PLR2004", # magic value used in comparison, consider replacing it with a constant variable
+    "PLW2901", # loop variable overwritten by assignment target
+    "RUF009",  # Do not perform function call in dataclass defaults
+]

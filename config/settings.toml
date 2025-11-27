@@ -1,0 +1,69 @@
+[colors]
+positive = '#80CC1A'
+primary = '#A5A6A5'
+secondary = '#80CC1A'
+accent = '#FAFAFA'
+
+[dataset]
+
+# --- Dataset 1 ---
+[dataset.loan_classification]
+name = "taweilo/loan-approval-classification-data"
+label = "Loan_Status"
+
+exclude = ["Loan_ID"]
+
+[dataset.loan_classification.columns]
+Gender = "categorical"
+Married = "categorical"
+Dependents = "categorical"
+Education = "categorical"
+Self_Employed = "categorical"
+ApplicantIncome = "numerical"
+CoapplicantIncome = "numerical"
+LoanAmount = "numerical"
+Loan_Amount_Term = "numerical"
+Credit_History = "numerical"
+Property_Area = "categorical"
+Loan_Status = "categorical"     # label
+
+
+# --- Dataset 2 ---
+[dataset.loan_prediction]
+name = "architsharma01/loan-approval-prediction-dataset"
+label = "Loan_Status"
+
+exclude = ["Loan_ID"]
+
+[dataset.loan_prediction.columns]
+Gender = "categorical"
+Married = "categorical"
+Dependents = "categorical"
+Education = "categorical"
+Self_Employed = "categorical"
+ApplicantIncome = "numerical"
+CoapplicantIncome = "numerical"
+LoanAmount = "numerical"
+Loan_Amount_Term = "numerical"
+Credit_History = "numerical"
+Property_Area = "categorical"
+Loan_Status = "categorical"     # label
+
+
+# --- Dataset 3 ---
+[dataset.credit_risk]
+name = "laotse/credit-risk-dataset"
+label = "Risk"
+
+exclude = ["Customer_ID"]
+
+[dataset.credit_risk.columns]
+Customer_ID = "categorical"
+Age = "numerical"
+Income = "numerical"
+LoanAmount = "numerical"
+CreditScore = "numerical"
+Gender = "categorical"
+MaritalStatus = "categorical"
+EmploymentType = "categorical"
+Risk = "categorical"           # label
