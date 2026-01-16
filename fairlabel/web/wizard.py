@@ -68,23 +68,21 @@ class SetupWizard:
     def render_dataset_step(self):
         ui.label("Choose a Dataset").classes("text-2xl font-bold mb-4")
         
-        with ui.row().classes("w-full gap-8"):
+        with ui.column().classes("w-full gap-8"):
             # List
-            with ui.column().classes("w-1/3"):
-                datasets = list(settings.dataset.keys())
-                ui.select(
-                    datasets, 
-                    label="Dataset", 
-                    value=self.selected_dataset_name,
-                    on_change=self.on_dataset_select
-                ).classes("w-full")
+            datasets = list(settings.dataset.keys())
+            ui.select(
+                datasets, 
+                label="Dataset", 
+                value=self.selected_dataset_name,
+                on_change=self.on_dataset_select
+            ).classes("w-full")
             
             # Preview
-            with ui.column().classes("w-2/3"):
-                if self.selected_dataset_name:
-                    self.render_dataset_preview()
-                else:
-                    ui.label("Select a dataset to view preview").classes("text-gray-500 italic")
+            if self.selected_dataset_name:
+                self.render_dataset_preview()
+            else:
+                ui.label("Select a dataset to view preview").classes("text-gray-500 italic")
 
         with ui.row().classes("w-full justify-end mt-8"):
             ui.button("Next", on_click=lambda: self.set_step(2)).props("color=primary").bind_enabled_from(
