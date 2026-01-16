@@ -16,9 +16,19 @@ class SetupWizard:
         
         # State
         self.current_step = 1
-        self.selected_dataset_name: str | None = None
-        self.selected_model_name: str | None = None
+        
+        # Pre-select first dataset
+        dataset_names = list(settings.dataset.keys())
+        self.selected_dataset_name: str | None = dataset_names[0] if dataset_names else None
+        
+        # Pre-select first model
+        model_names = list(MODELS.keys())
+        self.selected_model_name: str | None = model_names[0] if model_names else None
+        
         self.model_params: dict[str, Any] = {}
+        if self.selected_model_name:
+             model_def = MODELS[self.selected_model_name]
+             self.model_params = {p.name: p.default for p in model_def.hyperparameters}
         
         # UI Elements
         self.container = ui.column().classes("w-full h-full items-center justify-center p-8")
