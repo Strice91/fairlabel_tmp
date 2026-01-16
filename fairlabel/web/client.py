@@ -12,6 +12,13 @@ class Client:
         self._id: str = id  # corresponds to ui.context.client.id
         self._dataset = None
 
+    def reset(self):
+        """Clears all client state."""
+        self._dataset = None
+        self._model_name = None
+        self._model_params = {}
+        self._model_instance = None
+
     @staticmethod
     def retrieve() -> "Client":
         """
@@ -29,3 +36,27 @@ class Client:
     def dataset(self, value):
         print(f"dataset selected: {value}")
         self._dataset = value
+
+    @property
+    def model_name(self):
+        return getattr(self, "_model_name", None)
+
+    @model_name.setter
+    def model_name(self, value):
+        self._model_name = value
+
+    @property
+    def model_params(self):
+        return getattr(self, "_model_params", {})
+
+    @model_params.setter
+    def model_params(self, value):
+        self._model_params = value
+
+    @property
+    def model_instance(self):
+        return getattr(self, "_model_instance", None)
+
+    @model_instance.setter
+    def model_instance(self, value):
+        self._model_instance = value
