@@ -24,21 +24,21 @@ async def setup_ui():
 async def main():
     await setup_ui()
     ui.page_title("Fairlabel")
-    
+
     client = Client.retrieve()
-    
+
     # Content container that will hold either the wizard or the main app
     content = ui.column().classes("w-full h-full p-0 gap-0")
-    
+
     def show_main_app():
         content.clear()
         Menu()
-    
+
     def show_wizard():
         content.clear()
         with content:
             SetupWizard(on_complete=lambda: ui.navigate.to("/", new_tab=False))
-            
+
     # Check if dataset is already selected (reloads)
     if client.dataset:
         show_main_app()

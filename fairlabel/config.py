@@ -4,7 +4,7 @@ from pathlib import Path
 
 from dynaconf import Dynaconf, Validator
 
-f = res.files("fairlabel") # Workaround as res.files now returns a MultiplexedPath
+f = res.files("fairlabel")  # Workaround as res.files now returns a MultiplexedPath
 PACKAGE_ROOT = next(iter(f._paths)) if isinstance(f, MultiplexedPath) else f
 PROJECT_ROOT = PACKAGE_ROOT.parent
 CONFIG_ROOT = PROJECT_ROOT / "config"

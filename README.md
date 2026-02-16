@@ -117,3 +117,22 @@ source .venv/bin/activate
 ```bash
 python fairlabel/web/server.py
 ```
+
+# TODOs:
+
+- UI: Create wire frame as mockup
+- Github: Create tickets / issues
+- Select active learning framework (python library)
+- Select fairness evaluation framework (python library) -> See other CoP teams
+- Integrate fairness metrics in machine learning framework -> loss function?
+- Finish user workflow
+    - Select Data set
+    - Select and configure model
+    - Initial Training / Initial Fairness evaluation
+    - Retraining / Active Learning -> query only a small subset of labels
+    - Check if fairness improved -> Dashboard / graph
+    - Store / Download / Deploy model
+- Write tests
+- Deploy tool to Cloud Provider (AWS, Azure, ...)
+- Do some User Acceptance Testing
+- Generate Manuals / How To / Video

@@ -5,11 +5,10 @@ from fairlabel.data import clean_column_name, get_dataset, infer_column_types
 from fairlabel.web.client import Client
 
 
-
 class Header(ui.header):
     def __init__(self) -> None:
         super().__init__()
-        
+
         ui.colors(**settings.colors)
         with self.classes("items-center gap-4"):
             ui.image("/static/fair.svg").classes("w-12")
@@ -20,14 +19,14 @@ class Menu(ui.left_drawer):
     def __init__(self) -> None:
         super().__init__(fixed=True, bordered=False)
         self.app_client = Client.retrieve()
-        
+
         ui.colors(**settings.colors)
 
         with Header():
             ui.button(on_click=self.toggle).props("flat color=white icon=menu")
-            ui.button("Restart", on_click=self.confirm_restart, icon="restart_alt").props(
-                "flat color=white"
-            ).tooltip("Restart setup process and clear selection")
+            ui.button("Restart", on_click=self.confirm_restart, icon="restart_alt").props("flat color=white").tooltip(
+                "Restart setup process and clear selection"
+            )
 
         with self.classes(f"bg-[{settings.colors.accent}] p-4"):
             self.info_container = ui.column().classes("mt-4")
@@ -36,14 +35,14 @@ class Menu(ui.left_drawer):
     def update_info(self):
         """Refresh dataset overview based on client selection."""
         self.info_container.clear()
-        
+
         dataset_name = self.app_client.dataset
-        
+
         with self.info_container:
             if not dataset_name:
                 ui.label("No dataset selected")
                 return
-            
+
             df = get_dataset(dataset_name)
 
             data_cfg = settings.dataset[dataset_name]
@@ -69,4 +68,3 @@ class Menu(ui.left_drawer):
                 ui.button("Cancel", on_click=dialog.close)
                 ui.button("Restart", on_click=self.restart, color="negative")
         dialog.open()
-

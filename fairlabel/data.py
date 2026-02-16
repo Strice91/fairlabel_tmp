@@ -40,6 +40,8 @@ def infer_column_types(df: pd.DataFrame) -> dict[str, str]:
     """
     Infer the type of each column in a DataFrame: 'numerical', 'categorical', or 'boolean'.
     Also cleans up column names (removes underscores, capitalizes words).
+
+    :param df:
     """
     column_types = {}
 
