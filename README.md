@@ -117,3 +117,71 @@ source .venv/bin/activate
 ```bash
 python fairlabel/web/server.py
 ```
+
+## Overview
+
+- This project simulates a real-world lending scenario where labeled data is expensive and fairness is critical. It uses:
+
+- Active Learning (modAL): To intelligently select the most "confusing" loan applications for human review, reducing the need for massive labeled datasets.
+
+- XGBoost: As the high-performance decision engine.
+
+- Fairlearn: To enforce Demographic Parity, ensuring the model does not discriminate against protected groups (e.g., Self-Employed individuals).
+
+- SHAP: To explain why a specific loan was approved or rejected.
+
+## Tech Stack
+- Python 3.9 or newer
+
+- XGBoost (Gradient Boosting)
+
+- modAL (Active Learning Framework)
+
+- Fairlearn (Bias Mitigation)
+
+- SHAP (Model Explainability)
+
+- Pandas / NumPy (Data Manipulation)
+
+## Installation
+- Clone the repository
+- Create and Activate virtual environment
+- Install dependencies: pip install pandas numpy xgboost scikit-learn fairlearn shap modAL-python matplotlib
+- Prepare your data:
+Place your dataset in the root folder and name it loan_data.csv. The script expects a CSV with columns like:
+loan_id, no_of_dependents, education, self_employed, income_annum, loan_amount, loan_term, cibil_score, ... loan_status
+- Run the script:  python fairlabel\EBM.py
+
+## 📊 Expected Output
+The script will perform the following steps:
+
+- Data Loading: Automatically detects categorical columns and the sensitive attribute (e.g., self_employed).
+
+- Active Learning Loop:
+
+    - The model starts with a small "seed" (5% of data).
+
+    - It queries the "pool" for the most uncertain cases.
+
+    - It simulates human labeling and retrains.
+
+    - Output: You will see the accuracy score update in the terminal for each round.
+
+- Fairness Correction:
+
+    - It applies the ExponentiatedGradient algorithm to enforce Demographic Parity.
+
+    - Output: A "Fairness Report" comparing approval rates between groups.
+
+- Visualization:
+
+    - Bar Chart: Shows the Approval Rate gap between groups (before/after fairness).
+
+    - SHAP Beeswarm Plot: Shows which features (Income, CIBIL, etc.) drove the decisions.
+ 
+- Common Issues
+    - ModuleNotFoundError: No module named 'modAL':
+You likely installed the wrong package. Run pip uninstall modal and then pip install modAL-python.
+
+    - UserWarning: Parameters: { "use_label_encoder" } are not used:
+This is a harmless warning from XGBoost. You can ignore it or remove the parameter from the code.
