@@ -146,11 +146,17 @@ python fairlabel/web/server.py
 ## Installation
 - Clone the repository
 - Create and Activate virtual environment
-- Install dependencies: pip install pandas numpy xgboost scikit-learn fairlearn shap modAL-python matplotlib
+- Install dependencies:
+```bash
+pip install pandas numpy xgboost scikit-learn fairlearn shap modAL-python matplotlib
+```
 - Prepare your data:
-Place your dataset in the root folder and name it loan_data.csv. The script expects a CSV with columns like:
+Place your dataset in the root folder and make sure assign file path to variable "file_path". The script expects a CSV with columns like:
 loan_id, no_of_dependents, education, self_employed, income_annum, loan_amount, loan_term, cibil_score, ... loan_status
-- Run the script:  python fairlabel\EBM.py
+- Run the script:
+```bash
+python fairlabel\EBM.py
+```
 
 ## 📊 Expected Output
 The script will perform the following steps:
